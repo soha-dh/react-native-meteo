@@ -18,14 +18,13 @@ export default function App() {
     getUserCoordinates();
   }, []);
 
-  useEffect(
-    (coordinates) => {
-      featchWeatherByCoords(coordinates);
-    },
-    [coordinates]
-  );
+  useEffect(() => {
+    if (coordinates) {
+      fetchWeatherByCoords(coordinates);
+    }
+  }, [coordinates]);
 
-  async function featchWeatherByCoords(coords) {
+  async function fetchWeatherByCoords(coords) {
     const weaderResponse = await MeteoAPI.fetchWeatherByCoords(coords);
     setWeather(weaderResponse);
   }
